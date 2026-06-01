@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Votaciones</title>
+        <meta charset="UTF-8">
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+            h2 { color: #2c3e50; }
+            table { border-collapse: collapse; width: 100%; background-color: white; }
+            th { background-color: #2c3e50; color: white; padding: 10px; text-align: left; }
+            td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+            tr:hover { background-color: #f0f0f0; }
+            a.btn { padding: 6px 12px; border-radius: 4px; text-decoration: none; color: white; }
+            a.btn-agregar { background-color: #27ae60; }
+            a.btn-editar { background-color: #2980b9; }
+            a.btn-eliminar { background-color: #e74c3c; }
+            .acciones { margin-bottom: 15px; }
+        </style>
+    </head>
+    <body>
+        <header th:replace="plantillas/partes :: cabecero"></header>
+        <h2>LISTA DE VOTACIONES</h2>
+        <div class="acciones">
+            <a th:href="@{/votacion/agregar}" class="btn btn-agregar">AGREGAR VOTACION</a>
+        </div>
+        <div th:if="${votaciones != null and !votaciones.empty}">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>FECHA</th>
+                    <th>PARTIDO</th>
+                    <th>CANDIDATO</th>
+                    <th>VOTANTE</th>
+                    <th>PAIS</th>
+                    <th>DEPARTAMENTO</th>
+                    <th>CIUDAD</th>
+                    <th>MESA</th>
+                    <th>PUESTO</th>
+                    <th>DURACION</th>
+                    <th>TARJETON</th>
+                    <th>EDITAR</th>
+                    <th>ELIMINAR</th>
+                </tr>
+                <tr th:each="v: ${votaciones}">
+                    <td th:text="${v.id}"></td>
+                    <td th:text="${v.fecha}"></td>
+                    <td th:text="${v.partidoPolitico}"></td>
+                    <td th:text="${v.candidato}"></td>
+                    <td th:text="${v.votante}"></td>
+                    <td th:text="${v.pais}"></td>
+                    <td th:text="${v.departamento}"></td>
+                    <td th:text="${v.ciudad}"></td>
+                    <td th:text="${v.mesa}"></td>
+                    <td th:text="${v.puestoPolitico}"></td>
+                    <td th:text="${v.duracion}"></td>
+                    <td th:text="${v.numeroTarjeton}"></td>
+                    <td><a th:href="@{/votacion/editar(id=${v.id})}" class="btn btn-editar">EDITAR</a></td>
+                    <td><a th:href="@{/votacion/eliminar(id=${v.id})}" class="btn btn-eliminar">ELIMINAR</a></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${votaciones == null or votaciones.empty}">
+            <p>La lista de Votaciones esta Vacia</p>
+        </div>
+        <br/><hr>
+        <footer th:replace="plantillas/partes :: pie"></footer>
+    </body>
+</html>
