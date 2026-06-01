@@ -37,4 +37,12 @@ public class ControladorInicio {
         userServicio.guardar(usuario);
         return "redirect:/";
     }
+
+    @GetMapping("/editar/{cedula}")
+    public String editar(Usuario usuario, Model modelo) {
+        log.info("Invocando el metodo EDITAR");
+        usuario = userServicio.buscar(usuario);
+        modelo.addAttribute("usuario", usuario);
+        return "modificar";
+    }
 }
