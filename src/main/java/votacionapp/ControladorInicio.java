@@ -45,4 +45,11 @@ public class ControladorInicio {
         modelo.addAttribute("usuario", usuario);
         return "modificar";
     }
+
+    @GetMapping("/eliminar")
+    public String eliminar(Usuario usuario) {
+        log.info("Invocando el metodo ELIMINAR");
+        userServicio.eliminar(usuario);
+        return "redirect:/";
+    }
 }
