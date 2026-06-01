@@ -1,11 +1,13 @@
 package votacionapp;
 
 import java.util.List;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import votacionapp.modelo.Usuario;
@@ -33,7 +35,10 @@ public class ControladorInicio {
     }
 
     @PostMapping("/guardar")
-    public String guardar(Usuario usuario) {
+    public String guardar(@Valid Usuario usuario, Errors errores) {
+        if (errores.hasErrors()) {
+            return "modificar";
+        }
         userServicio.guardar(usuario);
         return "redirect:/";
     }

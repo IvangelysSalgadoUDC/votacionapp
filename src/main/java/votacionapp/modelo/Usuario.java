@@ -3,6 +3,8 @@ package votacionapp.modelo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
@@ -12,9 +14,16 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @NotEmpty
     private String cedula;
+
+    @NotEmpty
     private String clave;
+
+    @NotEmpty
     private String nombre;
+
+    @Email
     private String email;
 
     public String getCedula() { return cedula; }
