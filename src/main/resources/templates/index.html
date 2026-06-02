@@ -8,6 +8,8 @@
         <header th:replace="plantillas/partes :: cabecero"></header>
         <h2>PAGINA DE INICIO</h2>
         <a th:href="@{/agregar}">AGREGAR USUARIO</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a th:href="@{/votacion/listar}">IR A VOTACIONES</a>
         <h4>LISTA DE PERSONAS</h4>
         <hr>
         <div th:if="${usuarios != null and !usuarios.empty}">
